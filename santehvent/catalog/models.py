@@ -1,25 +1,56 @@
 from django.db import models
 
-# Create your models here.
-class good(models.Model):
-    qoodName = models.CharField(max_length=100,default='FAC1212')
-    goodGroup = models.CharField(max_length=100,default= 'Invertor')
-    goodSquare = models.CharField(max_length=100,default='30 sq m')
-    goodSizeIn = models.CharField(max_length=100,default='80*20*30')
-    goodSizeOut = models.CharField(max_length=100,default='100*50*40')
-    goodWatt = models.CharField(max_length=100,default='200W')
-    goodKG = models.CharField(max_length=100, default='10 kg')
-    goodCountry = models.CharField(max_length=100, default='China')
-    goodGaranty = models.CharField(max_length=100, default='1 year')
-    goodHladagent = models.CharField(max_length=100, default='R 410A')
 
-class group(models.Model):
+Garanty = (
+    ('1 Year', '1 Year'),
+    ('2 Year', '2 Year'),
+    ('3 Year', '3 Year'),
+    ('4 Year', '4 Year'),
+    ('5 Year', '5 Year'),
+    ('without', 'without garanty'),
+)
+
+class GroupGoods(models.Model):
     groupName = models.CharField(max_length=100)
 
-class inShop(models.Model):
+
+class Manufacturer(models.Model):  # of good
+    VendorName = models.CharField(max_length=100)
+
+
+class Country(models.Model):  # country of good
+    CountryName = models.CharField(max_length=100)
+
+
+class Goods(models.Model):  # main catalog
+    goodName = models.CharField(max_length=100, default='FAC1212')
+    goodSquare = models.CharField(max_length=100, default='30 sq m')
+    goodSizeIn = models.CharField(max_length=100, blank=True)
+    goodSizeOut = models.CharField(max_length=100, blank=True)
+    goodWatt = models.CharField(max_length=100, default='200W')
+    goodKG = models.CharField(max_length=100, default='10 kg')
+    goodGaranty = models.CharField(max_length=30, choices=Garanty, null=False, blank=False)
+    goodHladagent = models.CharField(max_length=100, default='R 410A')
+    goodPhoto = models.CharField(max_length=100, default='None')
+
+    goodVendor = models.ForeignKey('Manufacturer', on_delete=models.DO_NOTHING)
+    goodGroup = models.ForeignKey('GroupGoods', on_delete=models.DO_NOTHING)
+    goodCountry = models.ForeignKey('Country', on_delete=models.DO_NOTHING)
+
+
+class InShop(models.Model):  # count of goods in storage
     goodID = models.IntegerField
     goodPrice = models.FloatField(default=0.0)
     goodcount = models.IntegerField
     goodreserv = models.IntegerField
 
 
+class Invoice(models.Model):  # incoming goods
+    goodID = models.IntegerField
+    goodcount = models.IntegerField
+
+
+class Bill(models.Model):  # outcoming goods
+    goodID = models.IntegerField
+    goodcount = models.IntegerField
+    ClientID = models.IntegerField
