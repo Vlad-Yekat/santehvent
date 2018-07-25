@@ -13,13 +13,32 @@ Garanty = (
 class GroupGoods(models.Model):
     groupName = models.CharField(max_length=100)
 
+    def __str__(self):
+        """
+        :return:
+        """
+        return self.groupName
+
+
 
 class Manufacturer(models.Model):  # of good
     VendorName = models.CharField(max_length=100)
 
+    def __str__(self):
+        """
+        :return:
+        """
+        return self.VendorName
+
 
 class Country(models.Model):  # country of good
     CountryName = models.CharField(max_length=100)
+
+    def __str__(self):
+        """
+        :return:
+        """
+        return self.CountryName + ' & C'
 
 
 class Goods(models.Model):  # main catalog
@@ -36,6 +55,13 @@ class Goods(models.Model):  # main catalog
     goodVendor = models.ForeignKey('Manufacturer', on_delete=models.DO_NOTHING)
     goodGroup = models.ForeignKey('GroupGoods', on_delete=models.DO_NOTHING)
     goodCountry = models.ForeignKey('Country', on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        """
+        :return:
+        """
+        return self.goodName + ' (' + self.goodVendor.VendorName + ', ' + self.goodCountry.CountryName + ', '+ self.goodSquare + ', '+ self.goodWatt +')'
+
 
 
 class InShop(models.Model):  # count of goods in storage
