@@ -47,15 +47,19 @@
         <h2 class="head-text text-left"> &nbsp;&nbsp;&nbsp;&nbsp;Very simple shop Santehvent...  Try to buy</h2>
     </div>
 </div>
+
+<h1>This is details of good {{ good_obj.goodName }}</h1>
+
   <ul>
-  {% for good1 in goods_list %}
-
-  <li>&nbsp; <a href="/catalog/{{ good1.id }}/">{{ good1 }}</a>
-      </li>
-  <br>
-
-
-  {% endfor %}
+  This is details of good {{ good_obj.goodName }}
   </ul>
+
+
+
+<form action="" method="post">
+{% csrf_token %}
+<input type="submit" value="Buy" />
+</form>
+
 </body>
 </html>

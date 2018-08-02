@@ -56,11 +56,13 @@ class Goods(models.Model):  # main catalog
     goodGroup = models.ForeignKey('GroupGoods', on_delete=models.DO_NOTHING)
     goodCountry = models.ForeignKey('Country', on_delete=models.DO_NOTHING)
 
+
     def __str__(self):
         """
         :return:
         """
         return self.goodName + ' (' + self.goodVendor.VendorName + ', ' + self.goodCountry.CountryName + ', '+ self.goodSquare + ', '+ self.goodWatt +')'
+
 
 
 

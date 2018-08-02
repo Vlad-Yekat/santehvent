@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.template import loader
 
 from django.http import HttpResponse
@@ -18,4 +19,16 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 def detail(request, good_id):
-    return HttpResponse(' You are looking on ' + good_id)
+    template = loader.get_template('catalog/details.html')
+    good_obj = get_object_or_404(Goods, pk=good_id)
+    context = {
+        'good_obj': good_obj,
+    }
+    return HttpResponse(template.render(context, request))
+
+def reviews(request, good_id):
+    template = loader.get_template('catalog/reviews.html')
+    context = {
+        'good_id': str(good_id),
+    }
+    return HttpResponse(template.render(context, request))
