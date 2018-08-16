@@ -56,14 +56,11 @@ class Goods(models.Model):  # main catalog
     goodGroup = models.ForeignKey('GroupGoods', on_delete=models.DO_NOTHING)
     goodCountry = models.ForeignKey('Country', on_delete=models.DO_NOTHING)
 
-
     def __str__(self):
         """
         :return:
         """
         return self.goodName + ' (' + self.goodVendor.VendorName + ', ' + self.goodCountry.CountryName + ', '+ self.goodSquare + ', '+ self.goodWatt +')'
-
-
 
 
 class InShop(models.Model):  # count of goods in storage
@@ -76,9 +73,11 @@ class InShop(models.Model):  # count of goods in storage
 class Invoice(models.Model):  # incoming goods
     goodID = models.IntegerField
     goodcount = models.IntegerField
+    goodPrice = models.FloatField(default=0.0)
 
 
 class Bill(models.Model):  # outcoming goods
-    goodID = models.IntegerField
-    goodcount = models.IntegerField
-    ClientID = models.IntegerField
+    goodPrice = models.FloatField(default=0.0)
+    goodID = models.CharField(max_length=100)
+    goodcount = models.FloatField(default=0.0)
+    ClientID = models.CharField(max_length=100)
