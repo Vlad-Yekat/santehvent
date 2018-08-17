@@ -64,10 +64,13 @@ class Goods(models.Model):  # main catalog
 
 
 class InShop(models.Model):  # count of goods in storage
-    goodID = models.IntegerField
+    goodID = models.CharField(max_length=100, blank=True)
     goodPrice = models.FloatField(default=0.0)
-    goodcount = models.IntegerField
-    goodreserv = models.IntegerField
+    goodcount = models.FloatField(default=0.0)
+    goodreserv = models.FloatField(default=0.0)
+
+    def __str__(self):
+        return ' id =  ' + self.goodID + '; in stock ' + str(self.goodcount) + '; reserv by client ' + str(self.goodreserv) + '; our price '+ str(self.goodPrice)
 
 
 class Invoice(models.Model):  # incoming goods

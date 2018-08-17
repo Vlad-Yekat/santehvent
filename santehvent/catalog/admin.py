@@ -15,9 +15,21 @@ class BillAdmin(admin.ModelAdmin):
 
 admin.site.register(Bill, BillAdmin)
 
+class InShopAdmin(admin.ModelAdmin):
+    list_display = ('id', 'goodcount', 'goodreserv', 'goodPrice')
+    list_filter = ['goodreserv']
+    search_fields = ['goodid']
+
+    fieldsets = [
+        (None, {'fields': ['goodID']}),
+        ('in stock inform', {'fields': ['goodcount','goodreserv','goodPrice']})
+    ]
+
+
+admin.site.register(InShop, InShopAdmin)
+
 admin.site.register(Goods)
 admin.site.register(GroupGoods)
 admin.site.register(Manufacturer)
 admin.site.register(Country)
-admin.site.register(InShop)
 admin.site.register(Invoice)
