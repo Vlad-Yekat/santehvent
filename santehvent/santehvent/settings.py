@@ -55,7 +55,8 @@ ROOT_URLCONF = 'santehvent.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        #'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'santehvent/templates').replace ('\\','/'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

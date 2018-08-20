@@ -28,7 +28,15 @@ class InShopAdmin(admin.ModelAdmin):
 
 admin.site.register(InShop, InShopAdmin)
 
-admin.site.register(Goods)
+class InGoodsAdmin(admin.ModelAdmin):
+    list_display = ('goodName', 'goodSquare', 'goodSizeIn', 'goodSizeOut', 'goodWatt', 'goodKG',
+                    'goodGaranty', 'goodHladagent', 'goodPhoto', 'goodVendor', 'goodGroup', 'goodCountry')
+    list_filter = ['goodName', 'goodVendor', 'goodCountry']
+    search_fields = ['goodName']
+
+
+admin.site.register(Goods, InGoodsAdmin)
+
 admin.site.register(GroupGoods)
 admin.site.register(Manufacturer)
 admin.site.register(Country)
