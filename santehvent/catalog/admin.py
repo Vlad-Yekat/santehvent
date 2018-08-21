@@ -10,6 +10,8 @@ from .models import InShop
 from .models import Invoice
 from .models import Bill
 
+admin.site.site_header = 'Santehvent administration'
+
 class BillAdmin(admin.ModelAdmin):
     fields = ['goodID', 'goodcount',  'goodPrice', 'ClientID']
 

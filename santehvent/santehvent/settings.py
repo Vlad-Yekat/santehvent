@@ -52,11 +52,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'santehvent.urls'
 
+
 TEMPLATES = [
     {
+        'DIRS': [os.path.join(BASE_DIR, 'templates',)],
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         #'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'DIRS': [os.path.join(BASE_DIR, 'santehvent/templates').replace ('\\','/'),],
+
+        #'DIRS': [os.path.join(BASE_DIR, 'santehvent/templates').replace ('\\','/'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
