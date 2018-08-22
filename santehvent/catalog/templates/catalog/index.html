@@ -12,14 +12,17 @@
 </head>
 <body>
 
-
-
+<div class="container-fluid">
 
 <div class="row">
     <div class="head-text col-sm-12">
         <h2 class="head-text text-left"> &nbsp;&nbsp;&nbsp;&nbsp;Very simple shop Santehvent...  Try to buy</h2>
     </div>
 </div>
+
+<div class="row">
+{% include 'leftmenu2.html' %}
+
   <ul>
   {% for good1 in goods_list %}
 
@@ -30,5 +33,9 @@
 
   {% endfor %}
   </ul>
+
+</div>
+</div>
+
 </body>
 </html>
