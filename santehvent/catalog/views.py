@@ -10,7 +10,7 @@ def index(request):
     goods_list = []
     other_arr = []
 
-    goods_list = Goods.objects.order_by('-goodName')[:10]
+    goods_list = Goods.objects.order_by('-goodName')[:12]
 
     template = loader.get_template('catalog/index.html')
     context = {

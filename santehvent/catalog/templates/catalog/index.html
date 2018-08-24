@@ -23,16 +23,29 @@
 <div class="row">
 {% include 'leftmenu2.html' %}
 
-  <ul>
-  {% for good1 in goods_list %}
+<div class="col-xs-12 col-md-11">
+  <div class="row">
+  <h3>
+    Our bests
+  </h3>
+  </div>
 
-  <li>&nbsp; <a href="/catalog/{{ good1.id }}/">{{ good1 }}</a>
-      </li>
-  <br>
+  <div class="row">
+
+     <br>
+
+       {% for good1 in goods_list %}
+          <div class="col-md-3">
+              &nbsp; <a href="/catalog/{{ good1.id }}/">{{ good1 }}</a>
+              <br>
+          </div>
 
 
-  {% endfor %}
-  </ul>
+        {% endfor %}
+
+
+  </div>
+</div>
 
 </div>
 </div>
