@@ -84,3 +84,4 @@ class Bill(models.Model):  # outcoming goods
     goodID = models.CharField(max_length=100)
     goodcount = models.FloatField(default=0.0)
     ClientID = models.CharField(max_length=100)
+    #email = models.Emailfileds()

@@ -32,3 +32,18 @@ def reviews(request, good_id):
         'good_id': str(good_id),
     }
     return HttpResponse(template.render(context, request))
+
+
+#all = Goods.objects.all()
+#one = Goods.objects.get(pk=1)
+#some = Goods.objects.filter(name='123')
+#notsome = Goods.objects.exclude(name='123')
+#andgood = Goods.objects(pole1='123',pole2='124')
+# orand : from django.db.models import Q / orgood = Goods.objects.filter((Q(pole1='1'))|(Q(pole1='2'))&Q(pole2='aa'))
+#step1,2  some = Goods.objects.filter(pole1='1') / some2 = some.filter(pole1='1')
+
+#ingod = Goods.objects.filter(pole1__in=[1,2])
+#contains(icontains) = like(ilike) '%ddd%'
+#startwith = like 'ddd%'
+#gt,gte,lt,lte >,>=, <,<=
+#range=between , insull=is null
