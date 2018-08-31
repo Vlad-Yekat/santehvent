@@ -1,14 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="ROBOTS" content="ALL" />
+<head>
+    <meta charset="UTF-8">
+    <title>e-shop Santehvent</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
 
-        <link rel="icon" href="{% static 'favicon.ico' %}">
+    {% load static %}
 
-    </head>
-    <body>
-    </body>
+    <link rel="stylesheet" type="text/css" href="{% static 'catalog/style.css' %}" />
+
+</head>
+<body>
+
+   <div class="container-fluid">
+
+      <div class="row">
+         <div class="head-text col-sm-12">
+            <h2 class="head-text text-left"> &nbsp;&nbsp;&nbsp;&nbsp;Very simple shop Santehvent...  Try to buy</h2>
+         </div>
+      </div>
+
+      <div class="row">
+         {% include 'leftmenu2.html' %}
+
+         <div class="col-xs-12 col-md-11">
+            <div class="row">
+               <h3>
+                  Our bests
+               </h3>
+            </div>
+         </div>
+      </div>
+   </div>
+
+</body>
 </html>
