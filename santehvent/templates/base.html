@@ -12,25 +12,8 @@
 </head>
 <body>
 
-   <div class="container-fluid">
-
-      <div class="row">
-         <div class="head-text col-sm-12">
-            <h2 class="head-text text-left"> &nbsp;&nbsp;&nbsp;&nbsp;Very simple shop Santehvent...  Try to buy</h2>
-         </div>
-      </div>
-
-      <div class="row">
-         {% include 'leftmenu2.html' %}
-
-         <div class="col-xs-12 col-md-11">
-            <div class="row">
-               <h3>
-                  Our bests
-               </h3>
-            </div>
-         </div>
-      </div>
+   <div id="content">
+       {% block content %}{% endblock %}
    </div>
 
 </body>
