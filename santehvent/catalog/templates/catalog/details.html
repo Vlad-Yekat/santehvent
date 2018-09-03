@@ -1,18 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>e-shop Santehvent</title>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+{% extends "base.html" %}
 
-    {% load static %}
+{% block title %}Santehvent. Information about good {% endblock %}
 
-    <link rel="stylesheet" type="text/css" href="{% static 'catalog/style.css' %}" />
-
-</head>
-<body>
-
-
+{% block content %}
+<div class="container-fluid">
 
 <div class="row">
     <div class="head-text col-sm-12">
@@ -20,7 +11,13 @@
     </div>
 </div>
 
-<h1>This is details of good {{ good_obj.goodName }}</h1>
+<div class="row">
+{% include 'leftmenu2.html' %}
+
+<div class="col-xs-12 col-md-11">
+  <div class="row">
+
+<h3>Details of good {{ good_obj.goodName }}</h3>
 
   <ul>
   This is details of good {{ good_obj.goodName }}
@@ -37,5 +34,8 @@
     -->
 </form>
 
-</body>
-</html>
+  </div>
+
+</div>
+</div>
+{% endblock %}

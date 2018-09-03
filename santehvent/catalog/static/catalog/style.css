@@ -1,6 +1,8 @@
   .green-text {
     color: green;
+      /*font-style: italic;*/
   }
+
    .smaller-image {
     width:100px;
   }
