@@ -5,39 +5,39 @@
 {% block content %}
 <div class="container-fluid">
 
-<div class="row">
-    <div class="head-text col-sm-12">
-        <h2 class="head-text text-left"> &nbsp;&nbsp;&nbsp;&nbsp;Very simple shop Santehvent...  Try to buy</h2>
-    </div>
-</div>
+   <div class="row">
+       <div class="head-text col-sm-12">
+           <h2 class="head-text text-left"> &nbsp;&nbsp;&nbsp;&nbsp;Very simple shop Santehvent...  Try to buy</h2>
+       </div>
+   </div>
 
-<div class="row">
-{% include 'leftmenu2.html' %}
+   <div class="row">
+      <div class="col-1">
+      {% include 'leftmenu2.html' %}
+      </div>
 
-<div class="col-xs-12 col-md-11">
-  <div class="row">
-  <h3>
-    Our bests
-  </h3>
-  </div>
+      <div class="col-11">
+        <div class="row">
+           <h3>
+              Our bests
+           </h3>
+        </div>
 
-  <div class="row">
+        <div class="row">
 
-     <br>
+           <br>
 
-       {% for good1 in goods_list %}
-          <div class="col-md-3">
-              &nbsp; <a href="/catalog/{{ good1.id }}/">{{ good1 }}</a>
-              <br>
-          </div>
+           {% for good1 in goods_list %}
+             <div class="col-3">
+                 &nbsp; <a href="/catalog/{{ good1.id }}/">{{ good1 }}</a>
+                 <br>
+             </div>
 
+           {% endfor %}
 
-        {% endfor %}
+        </div>
+      </div>
 
-
-  </div>
-</div>
-
-</div>
+   </div>
 </div>
 {% endblock %}
