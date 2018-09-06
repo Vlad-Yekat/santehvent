@@ -5,41 +5,52 @@
 {% block content %}
 <div class="container-fluid">
 
-<div class="row">
-    <div class="head-text col-sm-12">
-        <h2 class="head-text text-left"> &nbsp;&nbsp;&nbsp;&nbsp;Very simple shop Santehvent...  Try to buy</h2>
-    </div>
-</div>
+   <div class="row">
+       <div class="head-text col-sm-12">
+           <h2 class="head-text text-left"> &nbsp;&nbsp;&nbsp;&nbsp;Very simple shop Santehvent...  Try to buy</h2>
+       </div>
+   </div>
 
-<div class="row">
-{% include 'leftmenu2.html' %}
+   <div class="row">
+       <div class="col-1">
+          {% include 'leftmenu2.html' %}
+       </div>
 
-<div class="col-xs-12 col-md-11">
-  <div class="row">
-
-<h3>Details of good {{ good_obj.goodName }}</h3>
-
-  <ul>
-  This is details of good {{ good_obj.goodName }}
-  </ul>
+      <div class="col-11">
 
 
+            <h3>Details of good {{ good_obj.goodName }}</h3>
+             <br>
+             <p>
 
-<form action="" method="post">
-{% csrf_token %}
-<input type="submit" value="Buy" />
-    <!--
-    b = bill(name="213",..)
-    b.save()
-    -->
-</form>
+                 <pre>
+                     {{ good_obj.goodName }}
+                     {{ good_obj.goodSquare }}
+                     {{ good_obj.goodSizeIn }}
+                     {{ good_obj.goodSizeOut }}
+                     {{ good_obj.goodWatt }}
+                     {{ good_obj.goodGaranty }}
+                     {{ good_obj.goodPhoto }}
+                 </pre>
 
-      <div class="alert alert-primary" role="alert">
-          Test bootstrap work
-          </div>
+             </p>
 
-  </div>
+            <form action="" method="post">
+               {% csrf_token %}
+               <input type="submit" value="Buy" />
+               <!--
+               b = bill(name="213",..)
+               b.save()
+               -->
+            </form>
 
-</div>
+
+
+              <button type="button" class="btn btn-dark">Test button</button>
+
+       
+
+       </div>
+   </div>
 </div>
 {% endblock %}

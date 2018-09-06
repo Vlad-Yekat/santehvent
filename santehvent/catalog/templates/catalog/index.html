@@ -25,15 +25,26 @@
 
         <div class="row">
 
-           <br>
+
 
            {% for good1 in goods_list %}
-             <div class="col-3">
+             <div class="col-3 topic-list__item">
                  &nbsp; <a href="/catalog/{{ good1.id }}/">{{ good1 }}</a>
+                 <br>
+                 <pre>
+                     {{ good1.goodName }}
+                     {{ good1.goodSquare }}
+                     {{ good1.goodSizeIn }}
+                     {{ good1.goodSizeOut }}
+                     {{ good1.goodWatt }}
+                     {{ good1.goodGaranty }}
+                     {{ good1.goodPhoto }}
+                 </pre>
                  <br>
              </div>
 
            {% endfor %}
+
 
         </div>
       </div>
