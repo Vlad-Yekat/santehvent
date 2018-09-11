@@ -12,6 +12,12 @@ def index(request):
 
     goods_list = Goods.objects.order_by('-goodName')[:12]
 
+    q = request.GET.get("q")
+    if q is not None:
+        goods_list = Goods.objects.all()
+        goods_list = goods_list.filter(goodName__icontains=q)
+        other_arr.append('search_string:'+str(q))
+
     template = loader.get_template('catalog/index.html')
     context = {
         'goods_list': goods_list, 'other': other_arr,
@@ -24,6 +30,11 @@ def reestr(request):
     other_arr = []
 
     goods_list = Goods.objects.order_by('-goodName')
+
+    q = request.GET.get("q")
+    if q is not None:
+        goods_list = goods_list.filter(goodName__icontains=q)
+
 
     template = loader.get_template('catalog/reestr.html')
     context = {

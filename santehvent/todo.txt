@@ -1,2 +1,9 @@
-basket on Redis
-message in chat on Redis
+план на ...
+0 слева фильтры по типам итп, меню все вверху
+1 ввод накладной-покупка + корзина
+...
+7 кролик
+8 поиск с еластик
+9 основную бд на постгресс
+10 basket on Redis
+11 message in chat on Redis
