@@ -4,7 +4,11 @@ from django.template import loader
 
 from django.http import HttpResponse
 from .models import Goods
+from celery.decorators import task
 
+@task(name="sum_two_numbers")
+def add(x, y):
+    return x + y
 
 def index(request):
     goods_list = []
