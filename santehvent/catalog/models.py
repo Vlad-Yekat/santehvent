@@ -10,6 +10,7 @@ Garanty = (
     ('without', 'without garanty'),
 )
 
+
 class GroupGoods(models.Model):
     groupName = models.CharField(max_length=100)
 
@@ -18,7 +19,6 @@ class GroupGoods(models.Model):
         :return:
         """
         return self.groupName
-
 
 
 class Manufacturer(models.Model):  # of good

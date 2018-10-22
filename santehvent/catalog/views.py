@@ -5,10 +5,30 @@ from django.template import loader
 from django.http import HttpResponse
 from .models import Goods
 from celery.decorators import task
+from django.views import View
+from .forms import InvoiceForm
+
 
 @task(name="sum_two_numbers")
 def add(x, y):
     return x + y
+
+
+class FormInvoiceView(View):
+    def get(self, request):
+        form = InvoiceForm()
+        return render(request, 'catalog/invoice.html', {'form': form})
+
+    def post(self, request):
+        form = InvoiceForm(request.POST)
+        if form.is_valid():
+            context = form.cleaned_data
+            return render(request, 'catalog/invoice.html', context)
+        else:
+            context = {}
+            return render(request, 'catalog/error.html', context)
+
+
 
 def index(request):
     goods_list = []

@@ -8,5 +8,6 @@ urlpatterns = [
     # ex: /catalog/5/reviews/
     path('<int:good_id>/reviews/', views.reviews, name='reviews'),
     path('index/', views.index, name='index'),
+    path('invoice/', views.FormInvoiceView.as_view()),
     path('', views.index, name='index'),
 ]
