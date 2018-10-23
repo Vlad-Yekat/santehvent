@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login form</title>
+</head>
+<body>
+<h1>Enter:</h1>
+{% if next %}
+<form action="/login/?next={{next}}" method="post"></form>
+{% else %}
+<form action="/login/" method="post">
+{% endif %}
+{% csrf_token %}
+{{ form }}
+    <input id="submit-btn" type="submit" value="Send">
+</form>
+</body>
+</html>

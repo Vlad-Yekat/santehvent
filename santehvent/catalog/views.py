@@ -7,6 +7,7 @@ from .models import Goods
 from celery.decorators import task
 from django.views import View
 from .forms import InvoiceForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 @task(name="sum_two_numbers")
@@ -14,7 +15,7 @@ def add(x, y):
     return x + y
 
 
-class FormInvoiceView(View):
+class FormInvoiceView(LoginRequiredMixin, View):
     def get(self, request):
         form = InvoiceForm()
         return render(request, 'catalog/invoice.html', {'form': form})
@@ -27,7 +28,6 @@ class FormInvoiceView(View):
         else:
             context = {}
             return render(request, 'catalog/error.html', context)
-
 
 
 def index(request):
