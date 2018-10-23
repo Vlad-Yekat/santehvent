@@ -3,11 +3,12 @@ from django.shortcuts import get_object_or_404
 from django.template import loader
 
 from django.http import HttpResponse
-from .models import Goods
+from .models import Goods, Invoice
 from celery.decorators import task
 from django.views import View
 from .forms import InvoiceForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import CreateView
 
 
 @task(name="sum_two_numbers")
@@ -15,19 +16,14 @@ def add(x, y):
     return x + y
 
 
-class FormInvoiceView(LoginRequiredMixin, View):
-    def get(self, request):
-        form = InvoiceForm()
-        return render(request, 'catalog/invoice.html', {'form': form})
+class FormInvoiceView(LoginRequiredMixin, CreateView):
+       model = Invoice
+       fields = ['goodID', 'goodcount', 'goodPrice']
+       success_url = '/invoice/add'
 
-    def post(self, request):
-        form = InvoiceForm(request.POST)
-        if form.is_valid():
-            context = form.cleaned_data
-            return render(request, 'catalog/invoice.html', context)
-        else:
-            context = {}
-            return render(request, 'catalog/error.html', context)
+       def form_valid(self, form):
+           form.instance.user = self.request.user
+           return super().form_valid(form)
 
 
 def index(request):

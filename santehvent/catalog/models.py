@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 
 Garanty = (
@@ -77,6 +78,7 @@ class Invoice(models.Model):  # incoming goods
     goodID = models.IntegerField
     goodcount = models.IntegerField
     goodPrice = models.FloatField(default=0.0)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE)
 
 
 class Bill(models.Model):  # outcoming goods
