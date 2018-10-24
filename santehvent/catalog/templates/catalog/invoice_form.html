@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+        <html>
+<head>Form</head>
+<body>
+<h1>invoice of goods</h1>
+<form method="post" action="/invoice/add">
+    {% csrf_token %}
+    {{ form }}
+    <input id="invoice-submit" type="submit" value="Save">
+</form>
+
+</body>
+</html>

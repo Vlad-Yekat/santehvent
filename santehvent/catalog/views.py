@@ -16,14 +16,16 @@ def add(x, y):
     return x + y
 
 
-class FormInvoiceView(LoginRequiredMixin, CreateView):
-       model = Invoice
-       fields = ['goodID', 'goodcount', 'goodPrice']
-       success_url = '/invoice/add'
+class InvoiceCreate(LoginRequiredMixin, CreateView):
+    model = Invoice
+    # fields = ['goodID', 'goodcount', 'goodPrice']
+    fields = '__all__'
+    success_url = '/invoice/add'
 
-       def form_valid(self, form):
-           form.instance.user = self.request.user
-           return super().form_valid(form)
+    def form_valid(self, form):
+        # model = form.save(commit=False)
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 def index(request):
