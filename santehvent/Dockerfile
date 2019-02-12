@@ -1,5 +1,5 @@
 FROM python:3.6.6
-MAINTAINER Vlad Rybin <vladislavi@m a i l.r u>
+MAINTAINER Vlad Rybin <vladislavi DOG mail.ru>
 ADD . /santehvent
 ENV DJANGO_SETTINGS_MODULE santehvent.settings
 RUN pip install -r /santehvent/requirements.txt

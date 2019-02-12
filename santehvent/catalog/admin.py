@@ -10,31 +10,47 @@ from .models import InShop
 from .models import Invoice
 from .models import Bill
 
-admin.site.site_header = 'Santehvent administration'
+admin.site.site_header = "Santehvent administration"
+
 
 class BillAdmin(admin.ModelAdmin):
-    fields = ['goodID', 'goodcount',  'goodPrice', 'ClientID']
+    fields = ["goodID", "goodcount", "goodPrice", "ClientID"]
+
 
 admin.site.register(Bill, BillAdmin)
 
+
 class InShopAdmin(admin.ModelAdmin):
-    list_display = ('id', 'goodcount', 'goodreserv', 'goodPrice')
-    list_filter = ['goodreserv']
-    search_fields = ['goodid']
+    list_display = ("id", "goodcount", "goodreserv", "goodPrice")
+    list_filter = ["goodreserv"]
+    search_fields = ["goodid"]
 
     fieldsets = [
-        (None, {'fields': ['goodID']}),
-        ('in stock inform', {'fields': ['goodcount','goodreserv','goodPrice']})
+        (None, {"fields": ["goodID"]}),
+        ("in stock inform", {"fields": ["goodcount", "goodreserv", "goodPrice"]}),
     ]
 
 
 admin.site.register(InShop, InShopAdmin)
 
+
 class InGoodsAdmin(admin.ModelAdmin):
-    list_display = ('goodName', 'goodSquare', 'goodSizeIn', 'goodSizeOut', 'goodWatt', 'goodKG',
-                    'goodGaranty', 'goodHladagent', 'goodPhoto', 'goodVendor', 'goodGroup', 'goodCountry')
-    list_filter = ['goodName', 'goodVendor', 'goodCountry']
-    search_fields = ['goodName']
+    list_display = (
+        "goodName",
+        "goodSquare",
+        "goodSizeIn",
+        "goodSizeOut",
+        "goodWatt",
+        "goodKG",
+        "goodGaranty",
+        "goodHladagent",
+        "goodPhoto",
+        "goodVendor",
+        "goodGroup",
+        "goodCountry",
+    )
+    list_filter = ["goodName", "goodVendor", "goodCountry"]
+    search_fields = ["goodName"]
 
 
 admin.site.register(Goods, InGoodsAdmin)

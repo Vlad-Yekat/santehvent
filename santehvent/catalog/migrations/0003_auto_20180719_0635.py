@@ -6,74 +6,140 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('catalog', '0002_auto_20180617_2233'),
-    ]
+    dependencies = [("catalog", "0002_auto_20180617_2233")]
 
     operations = [
         migrations.CreateModel(
-            name='Bill',
+            name="Bill",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                )
             ],
         ),
         migrations.CreateModel(
-            name='Country',
+            name="Country",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('CountryName', models.CharField(max_length=100)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("CountryName", models.CharField(max_length=100)),
             ],
         ),
         migrations.CreateModel(
-            name='Goods',
+            name="Goods",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('goodName', models.CharField(default='FAC1212', max_length=100)),
-                ('goodSquare', models.CharField(default='30 sq m', max_length=100)),
-                ('goodSizeIn', models.CharField(blank=True, max_length=100)),
-                ('goodSizeOut', models.CharField(blank=True, max_length=100)),
-                ('goodWatt', models.CharField(default='200W', max_length=100)),
-                ('goodKG', models.CharField(default='10 kg', max_length=100)),
-                ('goodGaranty', models.CharField(choices=[('1 Year', '1 Year'), ('2 Year', '2 Year'), ('3 Year', '3 Year'), ('4 Year', '4 Year'), ('5 Year', '5 Year'), ('without', 'without garanty')], max_length=30)),
-                ('goodHladagent', models.CharField(default='R 410A', max_length=100)),
-                ('goodPhoto', models.CharField(default='None', max_length=100)),
-                ('goodCountry', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='catalog.Country')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("goodName", models.CharField(default="FAC1212", max_length=100)),
+                ("goodSquare", models.CharField(default="30 sq m", max_length=100)),
+                ("goodSizeIn", models.CharField(blank=True, max_length=100)),
+                ("goodSizeOut", models.CharField(blank=True, max_length=100)),
+                ("goodWatt", models.CharField(default="200W", max_length=100)),
+                ("goodKG", models.CharField(default="10 kg", max_length=100)),
+                (
+                    "goodGaranty",
+                    models.CharField(
+                        choices=[
+                            ("1 Year", "1 Year"),
+                            ("2 Year", "2 Year"),
+                            ("3 Year", "3 Year"),
+                            ("4 Year", "4 Year"),
+                            ("5 Year", "5 Year"),
+                            ("without", "without garanty"),
+                        ],
+                        max_length=30,
+                    ),
+                ),
+                ("goodHladagent", models.CharField(default="R 410A", max_length=100)),
+                ("goodPhoto", models.CharField(default="None", max_length=100)),
+                (
+                    "goodCountry",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="catalog.Country",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='GroupGoods',
+            name="GroupGoods",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('groupName', models.CharField(max_length=100)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("groupName", models.CharField(max_length=100)),
             ],
         ),
         migrations.CreateModel(
-            name='Invoice',
+            name="Invoice",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                )
             ],
         ),
         migrations.CreateModel(
-            name='Manufacturer',
+            name="Manufacturer",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('VendorName', models.CharField(max_length=100)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("VendorName", models.CharField(max_length=100)),
             ],
         ),
-        migrations.DeleteModel(
-            name='good',
-        ),
-        migrations.DeleteModel(
-            name='group',
+        migrations.DeleteModel(name="good"),
+        migrations.DeleteModel(name="group"),
+        migrations.AddField(
+            model_name="goods",
+            name="goodGroup",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.DO_NOTHING, to="catalog.GroupGoods"
+            ),
         ),
         migrations.AddField(
-            model_name='goods',
-            name='goodGroup',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='catalog.GroupGoods'),
-        ),
-        migrations.AddField(
-            model_name='goods',
-            name='goodVendor',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='catalog.Manufacturer'),
+            model_name="goods",
+            name="goodVendor",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.DO_NOTHING,
+                to="catalog.Manufacturer",
+            ),
         ),
     ]

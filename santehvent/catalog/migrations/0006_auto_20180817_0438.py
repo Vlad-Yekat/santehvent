@@ -5,24 +5,18 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('catalog', '0005_auto_20180816_0442'),
-    ]
+    dependencies = [("catalog", "0005_auto_20180816_0442")]
 
     operations = [
         migrations.AddField(
-            model_name='inshop',
-            name='goodID',
+            model_name="inshop",
+            name="goodID",
             field=models.CharField(blank=True, max_length=100),
         ),
         migrations.AddField(
-            model_name='inshop',
-            name='goodcount',
-            field=models.FloatField(default=0.0),
+            model_name="inshop", name="goodcount", field=models.FloatField(default=0.0)
         ),
         migrations.AddField(
-            model_name='inshop',
-            name='goodreserv',
-            field=models.FloatField(default=0.0),
+            model_name="inshop", name="goodreserv", field=models.FloatField(default=0.0)
         ),
     ]

@@ -3,12 +3,12 @@ from django.conf import settings
 
 
 Garanty = (
-    ('1 Year', '1 Year'),
-    ('2 Year', '2 Year'),
-    ('3 Year', '3 Year'),
-    ('4 Year', '4 Year'),
-    ('5 Year', '5 Year'),
-    ('without', 'without garanty'),
+    ("1 Year", "1 Year"),
+    ("2 Year", "2 Year"),
+    ("3 Year", "3 Year"),
+    ("4 Year", "4 Year"),
+    ("5 Year", "5 Year"),
+    ("without", "without garanty"),
 )
 
 
@@ -39,29 +39,42 @@ class Country(models.Model):  # country of good
         """
         :return:
         """
-        return self.CountryName + ' & C'
+        return self.CountryName + " & C"
 
 
 class Goods(models.Model):  # main catalog
-    goodName = models.CharField(max_length=100, default='FAC1212')
-    goodSquare = models.CharField(max_length=100, default='30 sq m')
+    goodName = models.CharField(max_length=100, default="FAC1212")
+    goodSquare = models.CharField(max_length=100, default="30 sq m")
     goodSizeIn = models.CharField(max_length=100, blank=True)
     goodSizeOut = models.CharField(max_length=100, blank=True)
-    goodWatt = models.CharField(max_length=100, default='200W')
-    goodKG = models.CharField(max_length=100, default='10 kg')
-    goodGaranty = models.CharField(max_length=30, choices=Garanty, null=False, blank=False)
-    goodHladagent = models.CharField(max_length=100, default='R 410A')
-    goodPhoto = models.CharField(max_length=100, default='None')
+    goodWatt = models.CharField(max_length=100, default="200W")
+    goodKG = models.CharField(max_length=100, default="10 kg")
+    goodGaranty = models.CharField(
+        max_length=30, choices=Garanty, null=False, blank=False
+    )
+    goodHladagent = models.CharField(max_length=100, default="R 410A")
+    goodPhoto = models.CharField(max_length=100, default="None")
 
-    goodVendor = models.ForeignKey('Manufacturer', on_delete=models.DO_NOTHING)
-    goodGroup = models.ForeignKey('GroupGoods', on_delete=models.DO_NOTHING)
-    goodCountry = models.ForeignKey('Country', on_delete=models.DO_NOTHING)
+    goodVendor = models.ForeignKey("Manufacturer", on_delete=models.DO_NOTHING)
+    goodGroup = models.ForeignKey("GroupGoods", on_delete=models.DO_NOTHING)
+    goodCountry = models.ForeignKey("Country", on_delete=models.DO_NOTHING)
 
     def __str__(self):
         """
         :return:
         """
-        return self.goodName + ' (' + self.goodVendor.VendorName + ', ' + self.goodCountry.CountryName + ', '+ self.goodSquare + ', '+ self.goodWatt +')'
+        return (
+            self.goodName
+            + " ("
+            + self.goodVendor.VendorName
+            + ", "
+            + self.goodCountry.CountryName
+            + ", "
+            + self.goodSquare
+            + ", "
+            + self.goodWatt
+            + ")"
+        )
 
 
 class InShop(models.Model):  # count of goods in storage
@@ -71,14 +84,25 @@ class InShop(models.Model):  # count of goods in storage
     goodreserv = models.FloatField(default=0.0)
 
     def __str__(self):
-        return ' id =  ' + self.goodID + '; in stock ' + str(self.goodcount) + '; reserved by client ' + str(self.goodreserv) + '; our price '+ str(self.goodPrice)
+        return (
+            " id =  "
+            + self.goodID
+            + "; in stock "
+            + str(self.goodcount)
+            + "; reserved by client "
+            + str(self.goodreserv)
+            + "; our price "
+            + str(self.goodPrice)
+        )
 
 
 class Invoice(models.Model):  # incoming goods
     goodID = models.IntegerField
     goodcount = models.IntegerField
     goodPrice = models.FloatField(default=0.0)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE
+    )
 
 
 class Bill(models.Model):  # outcoming goods
@@ -86,4 +110,4 @@ class Bill(models.Model):  # outcoming goods
     goodID = models.CharField(max_length=100)
     goodcount = models.FloatField(default=0.0)
     ClientID = models.CharField(max_length=100)
-    #email = models.Emailfileds()
+    # email = models.Emailfileds()
