@@ -1,3 +1,4 @@
-django==2.1.7
-celery==4.2.1
-redis==2.10.6
+django==3.0.4
+celery==4.4.3
+redis==3.4.1
+django-allauth-0.41.0

@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 
 
-Garanty = (
+GARANTY = (
     ("1 Year", "1 Year"),
     ("2 Year", "2 Year"),
     ("3 Year", "3 Year"),
@@ -13,101 +13,101 @@ Garanty = (
 
 
 class GroupGoods(models.Model):
-    groupName = models.CharField(max_length=100)
+    group_name = models.CharField(max_length=100)
 
     def __str__(self):
         """
         :return:
         """
-        return self.groupName
+        return self.group_name
 
 
 class Manufacturer(models.Model):  # of good
-    VendorName = models.CharField(max_length=100)
+    vendor_name = models.CharField(max_length=100)
 
     def __str__(self):
         """
         :return:
         """
-        return self.VendorName
+        return self.vendor_name
 
 
 class Country(models.Model):  # country of good
-    CountryName = models.CharField(max_length=100)
+    country_name = models.CharField(max_length=100)
 
     def __str__(self):
         """
         :return:
         """
-        return self.CountryName + " & C"
+        return self.country_name + " & C"
 
 
 class Goods(models.Model):  # main catalog
-    goodName = models.CharField(max_length=100, default="FAC1212")
-    goodSquare = models.CharField(max_length=100, default="30 sq m")
-    goodSizeIn = models.CharField(max_length=100, blank=True)
-    goodSizeOut = models.CharField(max_length=100, blank=True)
-    goodWatt = models.CharField(max_length=100, default="200W")
-    goodKG = models.CharField(max_length=100, default="10 kg")
-    goodGaranty = models.CharField(
-        max_length=30, choices=Garanty, null=False, blank=False
+    good_name = models.CharField(max_length=100, default="FAC1212")
+    good_square = models.CharField(max_length=100, default="30 sq m")
+    good_size_in = models.CharField(max_length=100, blank=True)
+    good_size_out = models.CharField(max_length=100, blank=True)
+    good_watt = models.CharField(max_length=100, default="200W")
+    good_kg = models.CharField(max_length=100, default="10 kg")
+    good_garanty = models.CharField(
+        max_length=30, choices=GARANTY, null=False, blank=False
     )
-    goodHladagent = models.CharField(max_length=100, default="R 410A")
-    goodPhoto = models.CharField(max_length=100, default="None")
+    good_hladagent = models.CharField(max_length=100, default="R 410A")
+    good_photo = models.CharField(max_length=100, default="None")
 
-    goodVendor = models.ForeignKey("Manufacturer", on_delete=models.DO_NOTHING)
-    goodGroup = models.ForeignKey("GroupGoods", on_delete=models.DO_NOTHING)
-    goodCountry = models.ForeignKey("Country", on_delete=models.DO_NOTHING)
+    good_vendor = models.ForeignKey("Manufacturer", on_delete=models.DO_NOTHING)
+    good_group = models.ForeignKey("GroupGoods", on_delete=models.DO_NOTHING)
+    good_country = models.ForeignKey("Country", on_delete=models.DO_NOTHING)
 
     def __str__(self):
         """
         :return:
         """
         return (
-            self.goodName
+            self.good_name
             + " ("
-            + self.goodVendor.VendorName
+            + self.good_vendor.vendor_name
             + ", "
-            + self.goodCountry.CountryName
+            + self.good_country.country_name
             + ", "
-            + self.goodSquare
+            + self.good_square
             + ", "
-            + self.goodWatt
+            + self.good_watt
             + ")"
         )
 
 
 class InShop(models.Model):  # count of goods in storage
-    goodID = models.CharField(max_length=100, blank=True)
-    goodPrice = models.FloatField(default=0.0)
-    goodcount = models.FloatField(default=0.0)
-    goodreserv = models.FloatField(default=0.0)
+    good_id = models.CharField(max_length=100, blank=True)
+    good_price = models.FloatField(default=0.0)
+    good_count = models.FloatField(default=0.0)
+    good_reserv = models.FloatField(default=0.0)
 
     def __str__(self):
         return (
             " id =  "
-            + self.goodID
+            + self.good_id
             + "; in stock "
-            + str(self.goodcount)
+            + str(self.good_count)
             + "; reserved by client "
-            + str(self.goodreserv)
+            + str(self.good_reserv)
             + "; our price "
-            + str(self.goodPrice)
+            + str(self.good_price)
         )
 
 
 class Invoice(models.Model):  # incoming goods
-    goodID = models.IntegerField
-    goodcount = models.IntegerField
-    goodPrice = models.FloatField(default=0.0)
+    good_id = models.IntegerField
+    good_count = models.IntegerField
+    good_price = models.FloatField(default=0.0)
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE
     )
 
 
 class Bill(models.Model):  # outcoming goods
-    goodPrice = models.FloatField(default=0.0)
-    goodID = models.CharField(max_length=100)
-    goodcount = models.FloatField(default=0.0)
-    ClientID = models.CharField(max_length=100)
+    good_price = models.FloatField(default=0.0)
+    good_id = models.CharField(max_length=100)
+    good_count = models.FloatField(default=0.0)
+    client_id = models.CharField(max_length=100)
     # email = models.Emailfileds()
