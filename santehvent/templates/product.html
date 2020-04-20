@@ -89,7 +89,11 @@
   </nav>
   <!-- Navbar -->
 
-  {% if messages %}
+
+  <!--Main layout-->
+  <main class="mt-5 pt-4">
+    <div>
+        {% if messages %}
 <ul class="messages">
     {% for message in messages %}
     <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
@@ -97,9 +101,7 @@
 </ul>
 {% endif %}
 
-
-  <!--Main layout-->
-  <main class="mt-5 pt-4">
+    </div>
     <div class="container dark-grey-text mt-5">
 
       <!--Grid row-->
